@@ -21,7 +21,7 @@ default: &default
 
 development:
   <<: *default
-  host: <%= ENV.fetch("POSTGRES_HOST", "db") %>
+  host: <%= ENV.fetch("POSTGRES_HOST", "localhost") %>
   database: <%= ENV.fetch("POSTGRES_DB", "pin_people_challenge_development") %>
   username: <%= ENV.fetch("POSTGRES_USER", "postgres") %>
   password: <%= ENV.fetch("POSTGRES_PASSWORD", "_postgres123") %>

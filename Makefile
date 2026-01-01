@@ -32,3 +32,6 @@ db-migrate:
 
 rubocop:
 	docker exec -it pin-web-1 bundle exec rubocop -c infra/.rubocop.yml $(ARGS)
+
+rubocop-local:
+	bundle exec rubocop -c infra/.rubocop.yml $(ARGS)

@@ -24,5 +24,8 @@ db-reset:
 test:
 	docker compose -p pin -f infra/compose.yml run --rm web rails test
 
+db-migrate:
+	docker compose -p pin -f infra/compose.yml exec web bundle exec rails db:migrate
+
 rubocop:
 	docker exec -it pin-web-1 bundle exec rubocop -c infra/.rubocop.yml $(ARGS)

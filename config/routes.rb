@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  mount Rswag::Ui::Engine => '/api-docs'
+  mount Rswag::Api::Engine => '/api-docs'
+
   resources :employees
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -13,8 +16,13 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  # root "posts#index"
+  root "employees#index"
 
   # Dashboard
   get 'dashboard', to: 'dashboard#index'
+  namespace :api do
+    namespace :v1 do
+      get 'dashboard', to: 'dashboard#show'
+    end
+  end
 end

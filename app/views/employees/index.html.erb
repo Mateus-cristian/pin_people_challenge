@@ -1,9 +1,7 @@
 <% content_for :title, "Employees" %>
 <div class="flex flex-col w-full">
   <div class="flex justify-between w-full items-center mb-4">
-    <h1 class="text-2xl">Employees List</h1>
-    <%= link_to "New employee", new_employee_path, class: "btn bg-red", style:
-    "color:#FFF; border:none;" %>
+    <h1 class="text-2xl">Lista de colaboradores</h1>
   </div>
 
   <div class="w-full flex justify-center">
@@ -11,15 +9,14 @@
       <table class="hidden lg:table lg:table-sm table-zebra w-full">
         <thead>
           <tr>
-            <th>Name</th>
+            <th>Nome</th>
             <th>Email</th>
-            <th>Corporate Email</th>
+            <th>Email corporativo</th>
             <th>Area</th>
-            <th>Role</th>
-            <th>Location</th>
-            <th>Time at Company</th>
-            <th>Generation</th>
-            <th>Actions</th>
+            <th>Função</th>
+            <th>Localização</th>
+            <th>Tempo de compania</th>
+            <th>Geração</th>
           </tr>
         </thead>
         <tbody>
@@ -33,10 +30,6 @@
             <td><%= employee.localidade %></td>
             <td><%= employee.tempo_de_empresa %></td>
             <td><%= employee.geracao %></td>
-            <td>
-              <%= link_to 'Show', employee_path(employee), class: 'btn btn-sm
-              bg-green text-white' %>
-            </td>
           </tr>
           <% end %>
         </tbody>
@@ -91,8 +84,6 @@
             >
             <span style="color: #2e2e2e"><%= employee.geracao %></span>
           </div>
-          <%= link_to 'Show', employee_path(employee), class: 'btn btn-sm
-          w-full', style: 'background:#0097a7; color:#FFF; border:none;' %>
         </div>
         <% end %>
       </div>

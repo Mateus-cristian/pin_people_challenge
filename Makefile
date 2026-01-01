@@ -1,4 +1,7 @@
-.PHONY: up down build logs bash db-setup db-reset test
+.PHONY: up down build logs bash db-setup db-reset test foreman-dev rubocop-local
+
+foreman-dev:
+	foreman start -f Procfile.dev
 
 compose-up:
 	docker compose -p pin -f infra/compose.yml up -d

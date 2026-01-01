@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 namespace :import do
   desc 'Importa dados do CSV para a tabela employees'
   task employees: :environment do
     require 'csv'
     file_path = Rails.root.join('public', 'data.csv')
-    
+
     puts "Importando: #{file_path}..."
-    
+
     CSV.foreach(file_path, headers: true, col_sep: ';') do |row|
       attrs = row.to_h.slice(
         'nome', 'email', 'email_corporativo', 'area', 'cargo', 'funcao', 'localidade',

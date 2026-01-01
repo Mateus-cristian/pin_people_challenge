@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+@source not "./daisyui{,*}.mjs";
+
+@plugin "./daisyui.mjs";
+
+/* Optional for custom themes – Docs: https://daisyui.com/docs/themes/#how-to-add-a-new-custom-theme */
+@plugin "./daisyui-theme.mjs" {
+  /* custom theme here */
+}
+
+@layer utilities {
+  .color-red {
+    color: #ee4c4a !important;
+  }
+  .color-green {
+    color: #0097a7 !important;
+  }
+  .color-black {
+    color: #2e2e2e !important;
+  }
+  .color-white {
+    color: #fff !important;
+  }
+  .bg-red {
+    background-color: #ee4c4a !important;
+  }
+  .bg-green {
+    background-color: #0097a7 !important;
+  }
+  .bg-black {
+    background-color: #2e2e2e !important;
+  }
+  .bg-white {
+    background-color: #fff !important;
+  }
+}

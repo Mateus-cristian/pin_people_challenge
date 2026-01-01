@@ -15,6 +15,9 @@ compose-logs:
 compose-bash:
 	docker compose -p pin -f infra/compose.yml exec web bash
 
+compose-build-up:
+	docker compose -p pin -f infra/compose.yml build && docker compose -p pin -f infra/compose.yml up -d
+
 db-setup:
 	docker compose -p pin -f infra/compose.yml run --rm web rails db:setup
 

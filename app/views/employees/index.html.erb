@@ -1,16 +1,102 @@
-<p style="color: green"><%= notice %></p>
-
 <% content_for :title, "Employees" %>
+<div class="flex flex-col w-full">
+  <div class="flex justify-between w-full items-center mb-4">
+    <h1 class="text-2xl">Employees List</h1>
+    <%= link_to "New employee", new_employee_path, class: "btn bg-red", style:
+    "color:#FFF; border:none;" %>
+  </div>
 
-<h1>Employees</h1>
+  <div class="w-full flex justify-center">
+    <div class="w-full">
+      <table class="hidden lg:table lg:table-sm table-zebra w-full">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Corporate Email</th>
+            <th>Area</th>
+            <th>Role</th>
+            <th>Location</th>
+            <th>Time at Company</th>
+            <th>Generation</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @employees.each do |employee| %>
+          <tr>
+            <td><%= employee.nome %></td>
+            <td><%= employee.email %></td>
+            <td><%= employee.email_corporativo %></td>
+            <td><%= employee.area %></td>
+            <td><%= employee.cargo %></td>
+            <td><%= employee.localidade %></td>
+            <td><%= employee.tempo_de_empresa %></td>
+            <td><%= employee.geracao %></td>
+            <td>
+              <%= link_to 'Show', employee_path(employee), class: 'btn btn-sm
+              bg-green text-white' %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
 
-<div id="employees">
-  <% @employees.each do |employee| %>
-    <%= render employee %>
-    <p>
-      <%= link_to "Show this employee", employee %>
-    </p>
-  <% end %>
+      <div class="flex flex-col gap-4 lg:hidden">
+        <% @employees.each do |employee| %>
+        <div
+          class="p-4 rounded-xl"
+          style="
+            background: #fff;
+            box-shadow: 0 0px 12px 0 #ee4c4a33;
+            color: #2e2e2e;
+          "
+        >
+          <div class="font-bold text-lg mb-2" style="color: #2e2e2e">
+            <%= employee.nome %>
+          </div>
+          <div class="text-sm mb-1">
+            <span class="font-semibold" style="color: #ee4c4a">Email:</span>
+            <span style="color: #2e2e2e"><%= employee.email %></span>
+          </div>
+          <div class="text-sm mb-1">
+            <span class="font-semibold" style="color: #ee4c4a"
+              >Corporate Email:</span
+            >
+            <span style="color: #2e2e2e"
+              ><%= employee.email_corporativo %></span
+            >
+          </div>
+          <div class="text-sm mb-1">
+            <span class="font-semibold" style="color: #ee4c4a">Area:</span>
+            <span style="color: #2e2e2e"><%= employee.area %></span>
+          </div>
+          <div class="text-sm mb-1">
+            <span class="font-semibold" style="color: #ee4c4a">Role:</span>
+            <span style="color: #2e2e2e"><%= employee.cargo %></span>
+          </div>
+          <div class="text-sm mb-1">
+            <span class="font-semibold" style="color: #ee4c4a">Location:</span>
+            <span style="color: #2e2e2e"><%= employee.localidade %></span>
+          </div>
+          <div class="text-sm mb-1">
+            <span class="font-semibold" style="color: #ee4c4a"
+              >Time at Company:</span
+            >
+            <span style="color: #2e2e2e"><%= employee.tempo_de_empresa %></span>
+          </div>
+          <div class="text-sm mb-2">
+            <span class="font-semibold" style="color: #ee4c4a"
+              >Generation:</span
+            >
+            <span style="color: #2e2e2e"><%= employee.geracao %></span>
+          </div>
+          <%= link_to 'Show', employee_path(employee), class: 'btn btn-sm
+          w-full', style: 'background:#0097a7; color:#FFF; border:none;' %>
+        </div>
+        <% end %>
+      </div>
+      <div class="mt-4 flex justify-center"><%= paginate @employees %></div>
+    </div>
+  </div>
 </div>
-
-<%= link_to "New employee", new_employee_path %>

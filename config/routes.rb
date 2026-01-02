@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'dashboard#index'
   namespace :api do
     namespace :v1 do
+      resources :employees
       get 'dashboard', to: 'dashboard#show'
     end
   end

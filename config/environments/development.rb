@@ -3,6 +3,8 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+  # Permitir requisições de múltiplas origens desabilitando a verificação de origem do CSRF em desenvolvimento
+  config.action_controller.forgery_protection_origin_check = false
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Make code changes take effect immediately without server restart.

@@ -2,6 +2,6 @@
 
 class DashboardController < ApplicationController
   def index
-    # Dados para o dashboard serão implementados aqui
+    @data = DashboardService.call(params)
   end
 end

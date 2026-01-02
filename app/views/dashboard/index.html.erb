@@ -1,2 +1,99 @@
-<h1>Dashboard</h1>
-<p>Bem-vindo ao dashboard! As métricas aparecerão aqui.</p>
+<div
+  class="w-full mx-auto p-6 bg-white rounded-2xl shadow-xl border border-gray-200"
+>
+  <h1
+    class="text-4xl font-extrabold mb-6 text-center color-red tracking-tight"
+  >
+    Dashboard
+  </h1>
+  <p class="mb-10 text-lg text-gray-600 text-center">
+    Bem-vindo ao seu dashboard! Aqui você pode explorar e analisar em tempo real os principais indicadores da empresa.
+  </p>
+
+  <div class="mb-8 flex flex-wrap justify-center gap-6">
+    <form
+      method="get"
+      action="/dashboard"
+      class="flex gap-4 flex-wrap items-end bg-gray-50 p-4 rounded-xl shadow border border-gray-100"
+    >
+      <div>
+        <label
+          for="area"
+          class="block text-sm font-semibold mb-1 text-gray-700"
+        >
+          Área:
+        </label>
+        <select
+          name="area"
+          id="area"
+          onchange="this.form.submit()"
+          class="border rounded px-2 py-1 focus:ring focus:ring-green-200"
+        >
+          <option value="">Todas</option>
+          <% @data[:filters][:areas].each do |area| %>
+          <option
+            value="<%= area %>"
+            <%= 'selected' if area == @data[:filters][:selected_area] %>
+          >
+            <%= area %>
+          </option>
+          <% end %>
+        </select>
+      </div>
+      <div>
+        <label
+          for="cargo"
+          class="block text-sm font-semibold mb-1 text-gray-700"
+        >
+          Cargo:
+        </label>
+        <select
+          name="cargo"
+          id="cargo"
+          onchange="this.form.submit()"
+          class="border rounded px-2 py-1 focus:ring focus:ring-green-200"
+        >
+          <option value="">Todos</option>
+          <% @data[:filters][:positions].each do |cargo| %>
+          <option
+            value="<%= cargo %>"
+            <%= 'selected' if cargo == @data[:filters][:selected_position] %>
+          >
+            <%= cargo %>
+          </option>
+          <% end %>
+        </select>
+      </div>
+    </form>
+  </div>
+
+  <div class="flex flex-col gap-10 mb-10">
+    <div
+      class="bg-gray-50 rounded-xl shadow p-6 border border-gray-100 flex flex-col items-center"
+    >
+      <h2 class="text-xl font-bold mb-4 color-green text-center">
+        Funcionários por Área
+      </h2>
+      <%= column_chart @data[:filtered][:employees_per_area], height: '320px', library: {title:
+      {text: '', fontSize: 0}} %>
+    </div>
+    <div
+      class="bg-gray-50 rounded-xl shadow p-6 border border-gray-100 flex flex-col items-center"
+    >
+      <h2 class="text-xl font-bold mb-4 color-green text-center">
+        Média de Feedback por Área
+      </h2>
+      <%= bar_chart @data[:filtered][:avg_feedback_per_area], height: '320px', library: {title:
+      {text: '', fontSize: 0}} %>
+    </div>
+    <div
+      class="bg-gray-50 rounded-xl shadow p-6 border border-gray-100 flex flex-col items-center"
+    >
+      <h2 class="text-xl font-bold mb-4 color-green text-center">
+        Distribuição de eNPS
+      </h2>
+      <%= pie_chart @data[:filtered][:enps_distribution], height: '320px', library: {title: {text:
+      '', fontSize: 0}} %>
+    </div>
+  </div>
+</div>

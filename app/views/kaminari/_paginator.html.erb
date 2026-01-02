@@ -4,8 +4,8 @@
 
     <!-- Prev -->
     <li>
-      <% if current_page > 1 %> <%= link_to raw('&laquo;'), url_for(page:
-      current_page - 1), class: 'join-item btn btn-sm bg-green color-black' %>
+      <% if current_page > 1 %> 
+      <%= link_to raw('&laquo;'), url_for(page: current_page - 1), class: 'join-item btn btn-sm bg-green color-black' %>
       <% else %>
       <span class="join-item btn btn-sm btn-disabled bg-green color-black"
         >&laquo;</span
@@ -18,16 +18,17 @@
     <li>
       <% if page == current_page %>
       <span class="join-item btn btn-sm bg-green color-black"><%= page %></span>
-      <% else %> <%= link_to page, url_for(page: page), class: 'join-item btn
-      btn-sm bg-white ' %> <% end %>
+      <% else %> 
+      <%= link_to page, url_for(page: page), class: 'join-item btn btn-sm bg-white ' %> 
+      <% end %>
     </li>
     <% end %>
 
     <!-- Next -->
     <li>
-      <% if current_page < total_pages %> <%= link_to raw('&raquo;'),
-      url_for(page: current_page + 1), class: 'join-item btn btn-sm bg-green
-      color-black' %> <% else %>
+      <% if current_page < total_pages %> 
+      <%= link_to raw('&raquo;'), url_for(page: current_page + 1), class: 'join-item btn btn-sm bg-green color-black' %> 
+      <% else %>
       <span class="join-item btn btn-sm btn-disabled bg-green color-black"
         >&raquo;</span
       >

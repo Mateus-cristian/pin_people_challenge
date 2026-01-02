@@ -6,9 +6,10 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="application-name" content="Pin People Challenge" />
     <meta name="mobile-web-app-capable" content="yes" />
-    <%= csrf_meta_tags %> <%= csp_meta_tag %> <%= yield :head %> <%# Enable PWA
-    manifest for installable apps (make sure to enable in config/routes.rb too!)
-    %> <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+    <%= javascript_include_tag "chartkick" %> 
+    <%= javascript_include_tag "Chart.bundle" %> 
+    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %> 
+    <%#= tag.link rel: "manifest", href:pwa_manifest_path(format: :json) %>
 
     <link rel="icon" href="/icon.png" type="image/png" />
     <link rel="icon" href="/icon.svg" type="image/svg+xml" />
@@ -20,7 +21,7 @@
 
   <body>
     <main
-      class="mx-auto mt-28 px-5 lg:px-2 xl:px-5 flex mb-5 w-full justify-center container"
+      class="mx-auto mt-28 px-2 lg:px-2 xl:px-5 flex mb-5 w-full justify-center container"
     >
       <%= yield %>
     </main>

@@ -1,11 +1,12 @@
 <% content_for :title, "Employees" %>
 <div class="flex flex-col w-full">
-  <div class="flex justify-between w-full items-center mb-4">
+  <div class="flex justify-center w-full items-center mb-4">
     <h1 class="text-2xl">Lista de colaboradores</h1>
   </div>
 
   <div class="w-full flex justify-center">
     <div class="w-full">
+      <% if @employees.any? %>
       <table class="hidden lg:table lg:table-sm table-zebra w-full">
         <thead>
           <tr>
@@ -34,17 +35,17 @@
           <% end %>
         </tbody>
       </table>
+      <% else %>
+        <div class="justify-center w-full hidden lg:flex">
+          <div role="alert" class="alert alert-info alert-soft text-center font-semibold max-w-60">
+            Nenhum funcionário cadastrado
+          </div>
+        </div>
+      <% end %>
 
       <div class="flex flex-col gap-4 lg:hidden">
-        <% @employees.each do |employee| %>
-        <div
-          class="p-4 rounded-xl"
-          style="
-            background: #fff;
-            box-shadow: 0 0px 12px 0 #ee4c4a33;
-            color: #2e2e2e;
-          "
-        >
+        <% if @employees.any? %> <% @employees.each do |employee| %>
+        <div class="p-4 rounded-xl shadow bg-white">
           <div class="font-bold text-lg mb-2" style="color: #2e2e2e">
             <%= employee.nome %>
           </div>
@@ -54,40 +55,50 @@
           </div>
           <div class="text-sm mb-1">
             <span class="font-semibold" style="color: #ee4c4a"
-              >Corporate Email:</span
+              >Email corporativo:</span
             >
             <span style="color: #2e2e2e"
               ><%= employee.email_corporativo %></span
             >
           </div>
           <div class="text-sm mb-1">
-            <span class="font-semibold" style="color: #ee4c4a">Area:</span>
+            <span class="font-semibold" style="color: #ee4c4a">Área:</span>
             <span style="color: #2e2e2e"><%= employee.area %></span>
           </div>
           <div class="text-sm mb-1">
-            <span class="font-semibold" style="color: #ee4c4a">Role:</span>
+            <span class="font-semibold" style="color: #ee4c4a">Cargo:</span>
             <span style="color: #2e2e2e"><%= employee.cargo %></span>
           </div>
           <div class="text-sm mb-1">
-            <span class="font-semibold" style="color: #ee4c4a">Location:</span>
+            <span class="font-semibold" style="color: #ee4c4a"
+              >Localidade:</span
+            >
             <span style="color: #2e2e2e"><%= employee.localidade %></span>
           </div>
           <div class="text-sm mb-1">
             <span class="font-semibold" style="color: #ee4c4a"
-              >Time at Company:</span
+              >Tempo de empresa:</span
             >
             <span style="color: #2e2e2e"><%= employee.tempo_de_empresa %></span>
           </div>
           <div class="text-sm mb-2">
-            <span class="font-semibold" style="color: #ee4c4a"
-              >Generation:</span
-            >
+            <span class="font-semibold" style="color: #ee4c4a">Geração:</span>
             <span style="color: #2e2e2e"><%= employee.geracao %></span>
+          </div>
+        </div>
+        <% end %> 
+        <% else %>
+        <div class="flex justify-center w-full">
+          <div role="alert" class="alert alert-info alert-soft text-center font-semibold max-w-60">
+            Nenhum funcionário cadastrado
           </div>
         </div>
         <% end %>
       </div>
+
+      <% if @employees.any? %>
       <div class="mt-4 flex justify-center"><%= paginate @employees %></div>
+      <% end %>
     </div>
   </div>
 </div>

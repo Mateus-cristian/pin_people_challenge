@@ -14,6 +14,10 @@ namespace :import do
         'tempo_de_empresa', 'genero', 'geracao', 'n0_empresa', 'n1_diretoria', 'n2_gerencia',
         'n3_coordenacao', 'n4_area'
       )
+
+      attrs['feedback'] = row['Feedback']
+      attrs['enps'] = row['eNPS']
+
       employee = Employee.find_or_initialize_by(email: attrs['email'])
       employee.assign_attributes(attrs)
       if employee.save

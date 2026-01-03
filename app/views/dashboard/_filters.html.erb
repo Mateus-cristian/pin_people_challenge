@@ -1,0 +1,49 @@
+<form
+  method="get"
+  action="/dashboard"
+  class="flex gap-4 flex-wrap items-end bg-gray-50 p-4 rounded-xl shadow border border-gray-100"
+>
+  <div>
+    <label
+      for="area"
+      class="block text-sm font-semibold mb-1 text-gray-700"
+    >
+      Área:
+    </label>
+    <select
+      name="area"
+      id="area"
+      aria-label="Filtro por área"
+      onchange="this.form.submit()"
+      class="select min-w-48 focus:ring focus:ring-green-200"
+    >
+      <option value="">Todas</option>
+      <% filters[:areas].each do |area| %>
+        <option value="<%= area %>" <%= 'selected' if area == filters[:selected_area] %>><%= area %></option>
+      <% end %>
+    </select>
+  </div>
+  <div>
+    <label
+      for="cargo"
+      class="block text-sm font-semibold mb-1 text-gray-700"
+    >
+      Cargo:
+    </label>
+    <select
+      name="cargo"
+      id="cargo"
+      aria-label="Filtro por cargo"
+      onchange="this.form.submit()"
+      class="select min-w-48 focus:ring focus:ring-green-200"
+    >
+      <option value="">Todos</option>
+      <% filters[:positions].each do |cargo| %>
+        <option value="<%= cargo %>" <%= 'selected' if cargo == filters[:selected_position] %>><%= cargo %></option>
+      <% end %>
+    </select>
+  </div>
+  <noscript>
+    <button type="submit" class="btn btn-sm btn-primary">Filtrar</button>
+  </noscript>
+</form>

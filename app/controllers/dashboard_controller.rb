@@ -2,6 +2,9 @@
 
 class DashboardController < ApplicationController
   def index
-    @data = DashboardService.call(params)
+    data = DashboardService.call(params)
+    @filtered = data[:filtered]
+    @filters  = data[:filters]
+    @eda      = data[:eda]
   end
 end

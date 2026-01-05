@@ -3,9 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe EmployeeMetricsQuery do
-  it 'calculates eNPS distribution' do
-    create(:employee, enps: 10)
-    create(:employee, enps: 3)
+  it 'calculates eNPS distribution correctly' do
+    emp1 = create(:employee)
+    emp2 = create(:employee)
+    create(:employee_survey_response, employee: emp1, enps: 10)
+    create(:employee_survey_response, employee: emp2, enps: 3)
 
     result = described_class.new(Employee.all).enps_distribution
 

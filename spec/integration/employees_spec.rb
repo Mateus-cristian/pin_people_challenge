@@ -59,7 +59,20 @@ describe 'Employees API' do
         type: :object,
         properties: {
           nome: { type: :string },
-          email: { type: :string }
+          email: { type: :string },
+          email_corporativo: { type: :string },
+          area: { type: :string },
+          cargo: { type: :string },
+          funcao: { type: :string },
+          localidade: { type: :string },
+          tempo_de_empresa: { type: :string },
+          genero: { type: :string },
+          geracao: { type: :string },
+          n0_empresa: { type: :string },
+          n1_diretoria: { type: :string },
+          n2_gerencia: { type: :string },
+          n3_coordenacao: { type: :string },
+          n4_area: { type: :string }
         },
         required: [ 'nome', 'email' ]
       }
@@ -109,24 +122,7 @@ describe 'Employees API' do
           n1_diretoria: { type: :string },
           n2_gerencia: { type: :string },
           n3_coordenacao: { type: :string },
-          n4_area: { type: :string },
-          data_da_resposta: { type: :string, format: :date },
-          interesse_no_cargo: { type: :integer },
-          comentarios_interesse_no_cargo: { type: :string },
-          contribuicao: { type: :integer },
-          comentarios_contribuicao: { type: :string },
-          aprendizado_e_desenvolvimento: { type: :integer },
-          comentarios_aprendizado_e_desenvolvimento: { type: :string },
-          feedback: { type: :integer },
-          comentarios_feedback: { type: :string },
-          interacao_com_gestor: { type: :integer },
-          comentarios_interacao_com_gestor: { type: :string },
-          clareza_sobre_possibilidades_de_carreira: { type: :integer },
-          comentarios_clareza_sobre_possibilidades_de_carreira: { type: :string },
-          expectativa_de_permanencia: { type: :integer },
-          comentarios_expectativa_de_permanencia: { type: :string },
-          enps: { type: :integer },
-          aberta_enps: { type: :string }
+          n4_area: { type: :string }
         },
         required: [ 'nome', 'email' ]
       }
@@ -146,24 +142,7 @@ describe 'Employees API' do
           n1_diretoria: 'diretoria a',
           n2_gerencia: 'gerência a1',
           n3_coordenacao: 'coordenação a11',
-          n4_area: 'área a112',
-          data_da_resposta: '2022-01-20',
-          interesse_no_cargo: 7,
-          comentarios_interesse_no_cargo: '-',
-          contribuicao: 1,
-          comentarios_contribuicao: '-',
-          aprendizado_e_desenvolvimento: 1,
-          comentarios_aprendizado_e_desenvolvimento: '-',
-          feedback: 6,
-          comentarios_feedback: '-',
-          interacao_com_gestor: 6,
-          comentarios_interacao_com_gestor: '-',
-          clareza_sobre_possibilidades_de_carreira: 6,
-          comentarios_clareza_sobre_possibilidades_de_carreira: '-',
-          expectativa_de_permanencia: 2,
-          comentarios_expectativa_de_permanencia: '-',
-          enps: 5,
-          aberta_enps: 'A empresa tem um excelente ambiente de trabalho e equipe colaborativa.'
+          n4_area: 'área a112'
         } }
         run_test!
       end

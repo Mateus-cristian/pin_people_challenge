@@ -4,8 +4,9 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::DashboardController, type: :controller do
   describe 'GET #show' do
-    it 'returns JSON with aggregated data' do
-      create(:employee, area: 'TI', cargo: 'Dev', feedback: 5, enps: 10)
+    it 'returns JSON with aggregated dashboard data' do
+      emp = create(:employee, area: 'TI', cargo: 'Dev')
+      create(:employee_survey_response, employee: emp, feedback: 5, enps: 10)
       get :show, format: :json
       expect(response).to have_http_status(:ok)
       json = JSON.parse(response.body)

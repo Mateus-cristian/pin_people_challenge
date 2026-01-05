@@ -25,6 +25,11 @@
       <% else %>
       <div class="text-gray-400 text-lg mt-16 mb-16">Sem dados disponíveis</div>
       <% end %>
+      <p class="text-sm text-gray-500 mt-4 text-center">
+        Este gráfico mostra a quantidade de funcionários em cada área da
+        empresa, permitindo identificar áreas mais populosas e possíveis
+        gargalos.
+      </p>
     </div>
     <div
       class="bg-gray-50 rounded-xl shadow p-6 border border-gray-100 flex flex-col items-center"
@@ -33,10 +38,15 @@
         Média de Feedback por Área
       </h2>
       <% if @filtered[:avg_feedback_per_area].present? %> 
-      <%= bar_chart @filtered[:avg_feedback_per_area], height: '320px', library: {title: {text: '', fontSize: 0}} %> 
+      <%= bar_chart @filtered[:avg_feedback_per_area], height: '320px', library: {title:{text: '', fontSize: 0}} %> 
       <% else %>
       <div class="text-gray-400 text-lg mt-16 mb-16">Sem dados disponíveis</div>
       <% end %>
+      <p class="text-sm text-gray-500 mt-4 text-center">
+        Este gráfico apresenta a média dos feedbacks recebidos por área,
+        facilitando a comparação do engajamento e satisfação entre
+        departamentos.
+      </p>
     </div>
     <div
       class="bg-gray-50 rounded-xl shadow p-6 border border-gray-100 flex flex-col items-center"
@@ -45,10 +55,15 @@
         Distribuição de eNPS
       </h2>
       <% if @filtered[:enps_distribution].present? %> 
-      <%= pie_chart @filtered[:enps_distribution], height: '320px', library: {title: {text:
-      '', fontSize: 0}} %> <% else %>
+      <%= pie_chart @filtered[:enps_distribution], height: '320px', library: {title: {text: '', fontSize: 0}} %> 
+      <% else %>
       <div class="text-gray-400 text-lg mt-16 mb-16">Sem dados disponíveis</div>
       <% end %>
+      <p class="text-sm text-gray-500 mt-4 text-center">
+        Este gráfico mostra a proporção de promotores, neutros e detratores
+        (eNPS) entre os colaboradores, indicando o nível de satisfação e
+        lealdade à empresa.
+      </p>
     </div>
 
     <%= render 'eda', eda: @eda %>

@@ -1,6 +1,6 @@
 <% content_for :title, "Employees" %>
 <div class="flex flex-col w-full">
-  <div class="flex justify-center w-full items-center mb-4">
+  <div class="flex justify-center w-full items-center mb-8">
     <h1 class="text-2xl">Lista de colaboradores</h1>
   </div>
 
@@ -15,9 +15,7 @@
             <th>Email corporativo</th>
             <th>Area</th>
             <th>Função</th>
-            <th>Localização</th>
-            <th>Tempo de compania</th>
-            <th>Geração</th>
+            <th>Ações</th>
           </tr>
         </thead>
         <tbody>
@@ -28,23 +26,28 @@
             <td><%= employee.email_corporativo %></td>
             <td><%= employee.area %></td>
             <td><%= employee.cargo %></td>
-            <td><%= employee.localidade %></td>
-            <td><%= employee.tempo_de_empresa %></td>
-            <td><%= employee.geracao %></td>
+            <td>
+              <%= link_to 'Ver detalhes', employee_path(employee), class: 'btn
+              btn-sm btn-primary bg-green border-[#0097a7]' %>
+            </td>
           </tr>
           <% end %>
         </tbody>
       </table>
       <% else %>
-        <div class="justify-center w-full hidden lg:flex">
-          <div role="alert" class="alert alert-info alert-soft text-center font-semibold max-w-60">
-            Nenhum funcionário cadastrado
-          </div>
+      <div class="justify-center w-full hidden lg:flex">
+        <div
+          role="alert"
+          class="alert alert-info alert-soft text-center font-semibold max-w-60"
+        >
+          Nenhum funcionário cadastrado
         </div>
+      </div>
       <% end %>
 
       <div class="flex flex-col gap-4 lg:hidden">
-        <% if @employees.any? %> <% @employees.each do |employee| %>
+        <% if @employees.any? %> 
+        <% @employees.each do |employee| %>
         <div class="p-4 rounded-xl shadow bg-white">
           <div class="font-bold text-lg mb-2" style="color: #2e2e2e">
             <%= employee.nome %>
@@ -69,27 +72,19 @@
             <span class="font-semibold" style="color: #ee4c4a">Cargo:</span>
             <span style="color: #2e2e2e"><%= employee.cargo %></span>
           </div>
-          <div class="text-sm mb-1">
-            <span class="font-semibold" style="color: #ee4c4a"
-              >Localidade:</span
-            >
-            <span style="color: #2e2e2e"><%= employee.localidade %></span>
-          </div>
-          <div class="text-sm mb-1">
-            <span class="font-semibold" style="color: #ee4c4a"
-              >Tempo de empresa:</span
-            >
-            <span style="color: #2e2e2e"><%= employee.tempo_de_empresa %></span>
-          </div>
-          <div class="text-sm mb-2">
-            <span class="font-semibold" style="color: #ee4c4a">Geração:</span>
-            <span style="color: #2e2e2e"><%= employee.geracao %></span>
+
+          <div class="mt-2">
+            <%= link_to 'Ver detalhes', employee_path(employee), class: 'btn
+            btn-sm btn-primary w-full bg-green border-[#0097a7]' %>
           </div>
         </div>
         <% end %> 
         <% else %>
         <div class="flex justify-center w-full">
-          <div role="alert" class="alert alert-info alert-soft text-center font-semibold max-w-60">
+          <div
+            role="alert"
+            class="alert alert-info alert-soft text-center font-semibold max-w-60"
+          >
             Nenhum funcionário cadastrado
           </div>
         </div>

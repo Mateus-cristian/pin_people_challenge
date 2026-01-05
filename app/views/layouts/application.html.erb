@@ -21,9 +21,33 @@
 
   <body>
     <main
-      class="mx-auto mt-28 px-2 lg:px-2 xl:px-5 flex mb-5 w-full justify-center container"
+      class="mx-auto mt-10 lg:mt-28 px-2 lg:px-2 xl:px-5 flex mb-5 w-full justify-center container"
     >
       <%= yield %>
+      <div class="fab fixed bottom-4 right-4 font-bold">
+        <div tabindex="0" role="button" class="btn btn-lg btn-circle btn-info bg-green border-[#0097a7]">☰</div>
+
+        <div class="fab-close">
+          Menu <span class="btn btn-circle btn-lg btn-error bg-red border-[#ee4c4a]">✕</span>
+        </div>
+
+        <div>
+          <span>Employees</span> 
+            <%= link_to employees_path, class: "flex items-center gap-2" do %>
+             <button class="btn btn-lg btn-circle">
+              😊
+             </button>
+            <% end %>
+        </div>
+        <div>
+          <span>Dashboard</span> 
+            <%= link_to dashboard_path, class: "flex items-center gap-2" do %>
+              <button class="btn btn-lg btn-circle">
+                📈
+              </button>
+            <% end %>
+        </div>
+      </div>
     </main>
   </body>
 </html>

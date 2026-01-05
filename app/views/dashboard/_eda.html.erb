@@ -1,4 +1,4 @@
-<div class="flex flex-col gap-10 mb-10">
+<div class="flex flex-col gap-10">
   <div
     class="bg-gray-50 rounded-xl shadow p-6 border border-gray-100 flex flex-col items-center"
   >
@@ -10,24 +10,34 @@
     <% else %>
     <div class="text-gray-400 text-lg mt-16 mb-16">Sem dados disponíveis</div>
     <% end %>
+    <p class="text-sm text-gray-500 mt-4 text-center">
+      Este gráfico mostra como o tempo de empresa está distribuído entre os colaboradores, ajudando a identificar grupos de recém-contratados e funcionários mais antigos.
+    </p>
   </div>
 
   <% feedback_boxplot_data = eda[:feedback_boxplot] || [] %> 
-  <% if feedback_boxplot_data.compact.present? %> 
-  <%= render 'chart_card', title:'Boxplot de Feedback Geral', title_color: 'color-green', chart: bar_chart({
-  "Mínimo" => feedback_boxplot_data[0], "Q1" => feedback_boxplot_data[1],
-  "Mediana" => feedback_boxplot_data[2], "Q3" => feedback_boxplot_data[3],
-  "Máximo" => feedback_boxplot_data[4] }, height: '320px', library: {title:
-  {text: '', fontSize: 0}}) %> 
+  <% if feedback_boxplot_data.compact.present? %>
+    <div class="bg-gray-50 rounded-xl shadow p-6 border border-gray-100 flex flex-col items-center">
+      <h2 class="text-xl font-bold mb-4 color-green text-center">Boxplot de Feedback Geral</h2>
+      <%= bar_chart({
+        "Mínimo" => feedback_boxplot_data[0],
+        "Q1" => feedback_boxplot_data[1],
+        "Mediana" => feedback_boxplot_data[2],
+        "Q3" => feedback_boxplot_data[3],
+        "Máximo" => feedback_boxplot_data[4]
+      }, height: '320px', library: {title: {text: '', fontSize: 0}}) %>
+      <p class="text-sm text-gray-500 mt-4 text-center">
+        O boxplot apresenta a dispersão dos feedbacks gerais, destacando valores mínimos, máximos, quartis e mediana, facilitando a análise de outliers e da distribuição dos feedbacks.
+      </p>
+    </div>
   <% else %>
-  <div
-    class="bg-gray-50 rounded-xl shadow p-6 border border-gray-100 flex flex-col items-center"
-  >
-    <h2 class="text-xl font-bold mb-4 color-green text-center">
-      Boxplot de Feedback Geral
-    </h2>
-    <div class="text-gray-400 text-lg mt-16 mb-16">Sem dados disponíveis</div>
-  </div>
+    <div class="bg-gray-50 rounded-xl shadow p-6 border border-gray-100 flex flex-col items-center">
+      <h2 class="text-xl font-bold mb-4 color-green text-center">Boxplot de Feedback Geral</h2>
+      <div class="text-gray-400 text-lg mt-16 mb-16">Sem dados disponíveis</div>
+      <p class="text-sm text-gray-500 mt-4 text-center">
+        O boxplot apresenta a dispersão dos feedbacks gerais, destacando valores mínimos, máximos, quartis e mediana, facilitando a análise de outliers e da distribuição dos feedbacks.
+      </p>
+    </div>
   <% end %>
 
   <div
@@ -50,5 +60,8 @@
     <% else %>
     <div class="text-gray-400 text-lg mt-16 mb-16">Sem dados disponíveis</div>
     <% end %>
+    <p class="text-sm text-gray-500 mt-4 text-center">
+      Estes cards apresentam estatísticas resumidas dos feedbacks e do total de funcionários, fornecendo um panorama quantitativo do engajamento e satisfação geral.
+    </p>
   </div>
 </div>

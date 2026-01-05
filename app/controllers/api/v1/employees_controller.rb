@@ -2,7 +2,7 @@
 
 module Api
   module V1
-    class EmployeesController < ApiController
+    class EmployeesController < Api::V1::ApplicationController
       def index
         order = params[:order]&.downcase == 'desc' ? :desc : :asc
         employees = Employee.order(nome: order).page(params[:page]).per(params[:per] || 25)
@@ -37,13 +37,16 @@ module Api
       end
 
       def update
-        employee = Employee.find(params[:id])
-        if !employee.update(employee_params)
-          render json: employee.errors, status: :unprocessable_entity
-          return
+        begin
+          employee = Employee.find(params[:id])
+          if !employee.update(employee_params)
+            render json: employee.errors, status: :unprocessable_entity
+            return
+          end
+          render json: employee
+        rescue ActiveRecord::RecordNotFound => e
+          render json: { error: 'Employee not found', details: e.message }, status: :not_found
         end
-
-        render json: employee
       end
 
       def destroy

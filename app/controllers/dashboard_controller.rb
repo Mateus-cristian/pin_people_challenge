@@ -5,6 +5,6 @@ class DashboardController < ApplicationController
     data = DashboardService.call(params)
     @filtered = data[:filtered]
     @filters  = data[:filters]
-    @eda      = data[:eda]
+    @eda      = EmployeeEdaService.call
   end
 end

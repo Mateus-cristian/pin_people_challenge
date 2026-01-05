@@ -10,16 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_01_145101) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_03_191000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
-  create_table "employees", force: :cascade do |t|
-    t.text "aberta_enps"
+  create_table "employee_survey_responses", force: :cascade do |t|
     t.integer "aprendizado_e_desenvolvimento"
-    t.string "area"
-    t.string "cargo"
-    t.string "celular"
     t.integer "clareza_sobre_possibilidades_de_carreira"
     t.text "comentarios_aprendizado_e_desenvolvimento"
     t.text "comentarios_clareza_sobre_possibilidades_de_carreira"
@@ -28,6 +24,26 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_01_145101) do
     t.text "comentarios_feedback"
     t.text "comentarios_interacao_com_gestor"
     t.text "comentarios_interesse_no_cargo"
+    t.integer "contribuicao"
+    t.datetime "created_at", null: false
+    t.date "data_da_resposta"
+    t.bigint "employee_id", null: false
+    t.integer "enps"
+    t.integer "expectativa_de_permanencia"
+    t.integer "feedback"
+    t.integer "interacao_com_gestor"
+    t.integer "interesse_no_cargo"
+    t.datetime "updated_at", null: false
+    t.index ["employee_id"], name: "index_employee_survey_responses_on_employee_id"
+  end
+
+  create_table "employees", force: :cascade do |t|
+    t.text "aberta_enps"
+    t.integer "aprendizado_e_desenvolvimento"
+    t.string "area"
+    t.string "cargo"
+    t.string "celular"
+    t.integer "clareza_sobre_possibilidades_de_carreira"
     t.integer "contribuicao"
     t.datetime "created_at", null: false
     t.date "data_da_resposta"
@@ -51,4 +67,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_01_145101) do
     t.string "tempo_de_empresa"
     t.datetime "updated_at", null: false
   end
+
+  add_foreign_key "employee_survey_responses", "employees"
 end

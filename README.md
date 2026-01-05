@@ -132,14 +132,14 @@ Select the tasks you wish to complete by marking them with an `X` in the `[ ]` b
 - [x] **Task 2**: Create a Basic Dashboard
 - [x] **Task 3**: Create a Test Suite
 - [x] **Task 4**: Create a Docker Compose Setup
-- [ ] **Task 5**: Exploratory Data Analysis
-- [ ] **Task 6**: Data Visualization - Company Level
-- [ ] **Task 7**: Data Visualization - Area Level
-- [ ] **Task 8**: Data Visualization - Employee Level
+- [x] **Task 5**: Exploratory Data Analysis
+- [x] **Task 6**: Data Visualization - Company Level
+- [x] **Task 7**: Data Visualization - Area Level
+- [x] **Task 8**: Data Visualization - Employee Level
 - [x] **Task 9**: Build a Simple API
-- [ ] **Task 10**: Sentiment Analysis
-- [ ] **Task 11**: Report Generation
-- [ ] **Task 12**: Creative Exploration
+- [] **Task 10**: Sentiment Analysis
+- [] **Task 11**: Report Generation
+- [] **Task 12**: Creative Exploration
 
 ---
 

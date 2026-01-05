@@ -1,391 +1,798 @@
 {
   "openapi": "3.0.1",
-  "info": { "title": "API V1", "version": "v1" },
-  "paths":
-    {
-      "/api/v1/dashboard":
-        {
-          "get":
-            {
-              "summary": "Retorna os dados agregados do dashboard",
-              "tags": ["Dashboard"],
-              "parameters":
-                [
-                  {
-                    "name": "area",
-                    "in": "query",
-                    "description": "Área para filtro",
-                    "required": false,
-                    "schema": { "type": "string" },
-                  },
-                  {
-                    "name": "cargo",
-                    "in": "query",
-                    "description": "Cargo para filtro",
-                    "required": false,
-                    "schema": { "type": "string" },
-                  },
-                ],
-              "responses":
-                {
-                  "200":
-                    {
-                      "description": "dados retornados",
-                      "content":
-                        {
-                          "application/json":
-                            {
-                              "schema":
-                                {
-                                  "type": "object",
-                                  "properties":
-                                    {
-                                      "all":
-                                        {
-                                          "type": "object",
-                                          "properties":
-                                            {
-                                              "employees_per_area":
-                                                {
-                                                  "type": "object",
-                                                  "additionalProperties":
-                                                    { "type": "integer" },
-                                                },
-                                              "avg_feedback_per_area":
-                                                {
-                                                  "type": "object",
-                                                  "additionalProperties":
-                                                    { "type": "number" },
-                                                },
-                                              "enps_distribution":
-                                                {
-                                                  "type": "object",
-                                                  "additionalProperties":
-                                                    { "type": "integer" },
-                                                },
-                                            },
-                                        },
-                                      "filtered":
-                                        {
-                                          "type": "object",
-                                          "properties":
-                                            {
-                                              "employees_per_area":
-                                                {
-                                                  "type": "object",
-                                                  "additionalProperties":
-                                                    { "type": "integer" },
-                                                },
-                                              "avg_feedback_per_area":
-                                                {
-                                                  "type": "object",
-                                                  "additionalProperties":
-                                                    { "type": "number" },
-                                                },
-                                              "enps_distribution":
-                                                {
-                                                  "type": "object",
-                                                  "additionalProperties":
-                                                    { "type": "integer" },
-                                                },
-                                            },
-                                        },
-                                      "filters":
-                                        {
-                                          "type": "object",
-                                          "properties":
-                                            {
-                                              "areas":
-                                                {
-                                                  "type": "array",
-                                                  "items": { "type": "string" },
-                                                },
-                                              "positions":
-                                                {
-                                                  "type": "array",
-                                                  "items": { "type": "string" },
-                                                },
-                                              "selected_area":
-                                                {
-                                                  "type": "string",
-                                                  "nullable": true,
-                                                },
-                                              "selected_position":
-                                                {
-                                                  "type": "string",
-                                                  "nullable": true,
-                                                },
-                                            },
-                                        },
-                                    },
-                                  "required": ["all", "filtered", "filters"],
-                                },
-                            },
+  "info": {
+    "title": "API V1",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/v1/dashboard": {
+      "get": {
+        "summary": "Retorna os dados agregados do dashboard",
+        "tags": [
+          "Dashboard"
+        ],
+        "parameters": [
+          {
+            "name": "area",
+            "in": "query",
+            "description": "Área para filtro",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cargo",
+            "in": "query",
+            "description": "Cargo para filtro",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "dados retornados",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "all": {
+                      "type": "object",
+                      "properties": {
+                        "employees_per_area": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "integer"
+                          }
                         },
+                        "avg_feedback_per_area": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "number"
+                          }
+                        },
+                        "enps_distribution": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "integer"
+                          }
+                        }
+                      }
                     },
-                },
-            },
+                    "filtered": {
+                      "type": "object",
+                      "properties": {
+                        "employees_per_area": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "integer"
+                          }
+                        },
+                        "avg_feedback_per_area": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "number"
+                          }
+                        },
+                        "enps_distribution": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    },
+                    "filters": {
+                      "type": "object",
+                      "properties": {
+                        "areas": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "positions": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "selected_area": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "selected_position": {
+                          "type": "string",
+                          "nullable": true
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "all",
+                    "filtered",
+                    "filters"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/employees/{employee_id}/employee_survey_responses": {
+      "parameters": [
+        {
+          "name": "employee_id",
+          "in": "path",
+          "description": "ID do colaborador",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Lista todas as respostas de pesquisa do colaborador",
+        "tags": [
+          "Respostas de Pesquisa"
+        ],
+        "responses": {
+          "200": {
+            "description": "respostas encontradas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/employee_survey_response"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "colaborador não encontrado"
+          }
+        }
+      },
+      "post": {
+        "summary": "Cria uma resposta de pesquisa para o colaborador",
+        "tags": [
+          "Respostas de Pesquisa"
+        ],
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "resposta criada"
+          },
+          "422": {
+            "description": "dados inválidos"
+          }
         },
-      "/api/v1/employees":
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "interesse_no_cargo": {
+                    "type": "integer"
+                  },
+                  "comentarios_interesse_no_cargo": {
+                    "type": "string"
+                  },
+                  "contribuicao": {
+                    "type": "integer"
+                  },
+                  "comentarios_contribuicao": {
+                    "type": "string"
+                  },
+                  "aprendizado_e_desenvolvimento": {
+                    "type": "integer"
+                  },
+                  "comentarios_aprendizado_e_desenvolvimento": {
+                    "type": "string"
+                  },
+                  "feedback": {
+                    "type": "integer"
+                  },
+                  "comentarios_feedback": {
+                    "type": "string"
+                  },
+                  "interacao_com_gestor": {
+                    "type": "integer"
+                  },
+                  "comentarios_interacao_com_gestor": {
+                    "type": "string"
+                  },
+                  "clareza_sobre_possibilidades_de_carreira": {
+                    "type": "integer"
+                  },
+                  "comentarios_clareza_sobre_possibilidades_de_carreira": {
+                    "type": "string"
+                  },
+                  "expectativa_de_permanencia": {
+                    "type": "integer"
+                  },
+                  "comentarios_expectativa_de_permanencia": {
+                    "type": "string"
+                  },
+                  "enps": {
+                    "type": "integer"
+                  },
+                  "aberta_enps": {
+                    "type": "string"
+                  },
+                  "data_da_resposta": {
+                    "type": "string",
+                    "format": "date"
+                  }
+                },
+                "required": [
+                  "interesse_no_cargo",
+                  "data_da_resposta"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/employees/{employee_id}/employee_survey_responses/{id}": {
+      "parameters": [
         {
-          "get":
-            {
-              "summary": "Retorna uma lista paginada de empregados",
-              "tags": ["Empregados"],
-              "parameters":
-                [
-                  {
-                    "name": "page",
-                    "in": "query",
-                    "description": "Número da página",
-                    "schema": { "type": "integer" },
-                  },
-                  {
-                    "name": "per",
-                    "in": "query",
-                    "description": "Itens por página",
-                    "schema": { "type": "integer" },
-                  },
-                  {
-                    "name": "order",
-                    "in": "query",
-                    "description": "Ordenação: asc ou desc:\n * `asc` \n * `desc` \n ",
-                    "required": false,
-                    "enum": ["asc", "desc"],
-                    "schema": { "type": "string" },
-                  },
-                ],
-              "responses":
-                {
-                  "200":
-                    {
-                      "description": "empregados encontrados",
-                      "content":
-                        {
-                          "application/json":
-                            {
-                              "schema":
-                                {
-                                  "type": "object",
-                                  "properties":
-                                    {
-                                      "employees":
-                                        {
-                                          "type": "array",
-                                          "items":
-                                            {
-                                              "$ref": "#/components/schemas/employee",
-                                            },
-                                        },
-                                      "meta":
-                                        {
-                                          "type": "object",
-                                          "properties":
-                                            {
-                                              "current_page":
-                                                { "type": "integer" },
-                                              "total_pages":
-                                                { "type": "integer" },
-                                              "total_count":
-                                                { "type": "integer" },
-                                            },
-                                        },
-                                    },
-                                },
-                            },
-                        },
-                    },
-                },
-            },
-          "post":
-            {
-              "summary": "Cria um empregado",
-              "tags": ["Empregados"],
-              "parameters": [],
-              "responses":
-                {
-                  "201": { "description": "empregado criado" },
-                  "422": { "description": "requisição inválida" },
-                },
-              "requestBody":
-                {
-                  "content":
-                    {
-                      "application/json":
-                        {
-                          "schema":
-                            {
-                              "type": "object",
-                              "properties":
-                                {
-                                  "nome": { "type": "string" },
-                                  "email": { "type": "string" },
-                                  "email_corporativo": { "type": "string" },
-                                  "area": { "type": "string" },
-                                  "cargo": { "type": "string" },
-                                  "funcao": { "type": "string" },
-                                  "localidade": { "type": "string" },
-                                  "tempo_de_empresa": { "type": "string" },
-                                  "genero": { "type": "string" },
-                                  "geracao": { "type": "string" },
-                                  "n0_empresa": { "type": "string" },
-                                  "n1_diretoria": { "type": "string" },
-                                  "n2_gerencia": { "type": "string" },
-                                  "n3_coordenacao": { "type": "string" },
-                                  "n4_area": { "type": "string" },
-                                  "data_da_resposta":
-                                    { "type": "string", "format": "date" },
-                                  "interesse_no_cargo": { "type": "integer" },
-                                  "comentarios_interesse_no_cargo":
-                                    { "type": "string" },
-                                  "contribuicao": { "type": "integer" },
-                                  "comentarios_contribuicao":
-                                    { "type": "string" },
-                                  "aprendizado_e_desenvolvimento":
-                                    { "type": "integer" },
-                                  "comentarios_aprendizado_e_desenvolvimento":
-                                    { "type": "string" },
-                                  "feedback": { "type": "integer" },
-                                  "comentarios_feedback": { "type": "string" },
-                                  "interacao_com_gestor": { "type": "integer" },
-                                  "comentarios_interacao_com_gestor":
-                                    { "type": "string" },
-                                  "clareza_sobre_possibilidades_de_carreira":
-                                    { "type": "integer" },
-                                  "comentarios_clareza_sobre_possibilidades_de_carreira":
-                                    { "type": "string" },
-                                  "expectativa_de_permanencia":
-                                    { "type": "integer" },
-                                  "comentarios_expectativa_de_permanencia":
-                                    { "type": "string" },
-                                  "enps": { "type": "integer" },
-                                  "aberta_enps": { "type": "string" },
-                                },
-                              "required": ["nome", "email"],
-                            },
-                        },
-                    },
-                },
-            },
+          "name": "employee_id",
+          "in": "path",
+          "description": "ID do colaborador",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
         },
-      "/api/v1/employees/{id}":
         {
-          "parameters":
-            [
-              {
-                "name": "id",
-                "in": "path",
-                "description": "ID do empregado",
-                "required": true,
-                "schema": { "type": "string" },
-              },
+          "name": "id",
+          "in": "path",
+          "description": "ID da resposta de pesquisa",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "put": {
+        "summary": "Atualiza uma resposta de pesquisa do colaborador",
+        "tags": [
+          "Respostas de Pesquisa"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "resposta atualizada"
+          },
+          "404": {
+            "description": "resposta não encontrada"
+          },
+          "422": {
+            "description": "dados inválidos"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "interesse_no_cargo": {
+                    "type": "integer"
+                  },
+                  "comentarios_interesse_no_cargo": {
+                    "type": "string"
+                  },
+                  "contribuicao": {
+                    "type": "integer"
+                  },
+                  "comentarios_contribuicao": {
+                    "type": "string"
+                  },
+                  "aprendizado_e_desenvolvimento": {
+                    "type": "integer"
+                  },
+                  "comentarios_aprendizado_e_desenvolvimento": {
+                    "type": "string"
+                  },
+                  "feedback": {
+                    "type": "integer"
+                  },
+                  "comentarios_feedback": {
+                    "type": "string"
+                  },
+                  "interacao_com_gestor": {
+                    "type": "integer"
+                  },
+                  "comentarios_interacao_com_gestor": {
+                    "type": "string"
+                  },
+                  "clareza_sobre_possibilidades_de_carreira": {
+                    "type": "integer"
+                  },
+                  "comentarios_clareza_sobre_possibilidades_de_carreira": {
+                    "type": "string"
+                  },
+                  "expectativa_de_permanencia": {
+                    "type": "integer"
+                  },
+                  "comentarios_expectativa_de_permanencia": {
+                    "type": "string"
+                  },
+                  "enps": {
+                    "type": "integer"
+                  },
+                  "aberta_enps": {
+                    "type": "string"
+                  },
+                  "data_da_resposta": {
+                    "type": "string",
+                    "format": "date"
+                  }
+                },
+                "required": [
+                  "interesse_no_cargo",
+                  "data_da_resposta"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/employees": {
+      "get": {
+        "summary": "Retorna uma lista paginada de empregados",
+        "tags": [
+          "Empregados"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Número da página",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "per",
+            "in": "query",
+            "description": "Itens por página",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Ordenação: asc ou desc:\n * `asc` \n * `desc` \n ",
+            "required": false,
+            "enum": [
+              "asc",
+              "desc"
             ],
-          "get":
-            {
-              "summary": "Retorna um empregado específico",
-              "tags": ["Empregados"],
-              "responses":
-                {
-                  "200":
-                    {
-                      "description": "empregado encontrado",
-                      "content":
-                        {
-                          "application/json":
-                            {
-                              "schema":
-                                { "$ref": "#/components/schemas/employee" },
-                            },
-                        },
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "empregados encontrados",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "employees": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/employee"
+                      }
                     },
-                  "404": { "description": "empregado não encontrado" },
-                },
-            },
-          "put":
-            {
-              "summary": "Atualiza um empregado",
-              "tags": ["Empregados"],
-              "parameters": [],
-              "responses":
-                {
-                  "200": { "description": "empregado atualizado" },
-                  "404": { "description": "empregado não encontrado" },
-                },
-              "requestBody":
-                {
-                  "content":
-                    {
-                      "application/json":
-                        {
-                          "schema": { "$ref": "#/components/schemas/employee" },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
                         },
-                    },
-                },
-            },
-          "delete":
-            {
-              "summary": "Remove um empregado",
-              "tags": ["Empregados"],
-              "responses":
-                {
-                  "204": { "description": "empregado removido" },
-                  "404": { "description": "empregado não encontrado" },
-                },
-            },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_count": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Cria um empregado",
+        "tags": [
+          "Empregados"
+        ],
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "empregado criado"
+          },
+          "422": {
+            "description": "requisição inválida"
+          }
         },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "email_corporativo": {
+                    "type": "string"
+                  },
+                  "area": {
+                    "type": "string"
+                  },
+                  "cargo": {
+                    "type": "string"
+                  },
+                  "funcao": {
+                    "type": "string"
+                  },
+                  "localidade": {
+                    "type": "string"
+                  },
+                  "tempo_de_empresa": {
+                    "type": "string"
+                  },
+                  "genero": {
+                    "type": "string"
+                  },
+                  "geracao": {
+                    "type": "string"
+                  },
+                  "n0_empresa": {
+                    "type": "string"
+                  },
+                  "n1_diretoria": {
+                    "type": "string"
+                  },
+                  "n2_gerencia": {
+                    "type": "string"
+                  },
+                  "n3_coordenacao": {
+                    "type": "string"
+                  },
+                  "n4_area": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "nome",
+                  "email"
+                ]
+              }
+            }
+          }
+        }
+      }
     },
-  "servers": [{ "url": "http://localhost:3000" }],
-  "components":
-    {
-      "schemas":
+    "/api/v1/employees/{id}": {
+      "parameters": [
         {
-          "employee":
-            {
-              "type": "object",
-              "properties":
-                {
-                  "id": { "type": "integer" },
-                  "nome": { "type": "string" },
-                  "email": { "type": "string" },
-                  "email_corporativo": { "type": "string" },
-                  "area": { "type": "string" },
-                  "cargo": { "type": "string" },
-                  "funcao": { "type": "string" },
-                  "localidade": { "type": "string" },
-                  "tempo_de_empresa": { "type": "string" },
-                  "genero": { "type": "string" },
-                  "geracao": { "type": "string" },
-                  "n0_empresa": { "type": "string" },
-                  "n1_diretoria": { "type": "string" },
-                  "n2_gerencia": { "type": "string" },
-                  "n3_coordenacao": { "type": "string" },
-                  "n4_area": { "type": "string" },
-                  "data_da_resposta": { "type": "string", "format": "date" },
-                  "interesse_no_cargo": { "type": "integer" },
-                  "comentarios_interesse_no_cargo": { "type": "string" },
-                  "contribuicao": { "type": "integer" },
-                  "comentarios_contribuicao": { "type": "string" },
-                  "aprendizado_e_desenvolvimento": { "type": "integer" },
-                  "comentarios_aprendizado_e_desenvolvimento":
-                    { "type": "string" },
-                  "feedback": { "type": "integer" },
-                  "comentarios_feedback": { "type": "string" },
-                  "interacao_com_gestor": { "type": "integer" },
-                  "comentarios_interacao_com_gestor": { "type": "string" },
-                  "clareza_sobre_possibilidades_de_carreira":
-                    { "type": "integer" },
-                  "comentarios_clareza_sobre_possibilidades_de_carreira":
-                    { "type": "string" },
-                  "expectativa_de_permanencia": { "type": "integer" },
-                  "comentarios_expectativa_de_permanencia":
-                    { "type": "string" },
-                  "enps": { "type": "integer" },
-                  "aberta_enps": { "type": "string" },
-                  "created_at": { "type": "string", "format": "date_time" },
-                  "updated_at": { "type": "string", "format": "date_time" },
-                },
-              "required": ["nome", "email"],
-            },
+          "name": "id",
+          "in": "path",
+          "description": "ID do empregado",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retorna um empregado específico",
+        "tags": [
+          "Empregados"
+        ],
+        "responses": {
+          "200": {
+            "description": "empregado encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/employee"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "empregado não encontrado"
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualiza um empregado",
+        "tags": [
+          "Empregados"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "empregado atualizado"
+          },
+          "404": {
+            "description": "empregado não encontrado"
+          }
         },
-    },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "email_corporativo": {
+                    "type": "string"
+                  },
+                  "area": {
+                    "type": "string"
+                  },
+                  "cargo": {
+                    "type": "string"
+                  },
+                  "funcao": {
+                    "type": "string"
+                  },
+                  "localidade": {
+                    "type": "string"
+                  },
+                  "tempo_de_empresa": {
+                    "type": "string"
+                  },
+                  "genero": {
+                    "type": "string"
+                  },
+                  "geracao": {
+                    "type": "string"
+                  },
+                  "n0_empresa": {
+                    "type": "string"
+                  },
+                  "n1_diretoria": {
+                    "type": "string"
+                  },
+                  "n2_gerencia": {
+                    "type": "string"
+                  },
+                  "n3_coordenacao": {
+                    "type": "string"
+                  },
+                  "n4_area": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "nome",
+                  "email"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remove um empregado",
+        "tags": [
+          "Empregados"
+        ],
+        "responses": {
+          "204": {
+            "description": "empregado removido"
+          },
+          "404": {
+            "description": "empregado não encontrado"
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "employee_survey_response": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "interesse_no_cargo": {
+            "type": "integer"
+          },
+          "comentarios_interesse_no_cargo": {
+            "type": "string",
+            "nullable": true
+          },
+          "contribuicao": {
+            "type": "integer",
+            "nullable": true
+          },
+          "comentarios_contribuicao": {
+            "type": "string",
+            "nullable": true
+          },
+          "aprendizado_e_desenvolvimento": {
+            "type": "integer",
+            "nullable": true
+          },
+          "comentarios_aprendizado_e_desenvolvimento": {
+            "type": "string",
+            "nullable": true
+          },
+          "feedback": {
+            "type": "integer",
+            "nullable": true
+          },
+          "comentarios_feedback": {
+            "type": "string",
+            "nullable": true
+          },
+          "interacao_com_gestor": {
+            "type": "integer",
+            "nullable": true
+          },
+          "comentarios_interacao_com_gestor": {
+            "type": "string",
+            "nullable": true
+          },
+          "clareza_sobre_possibilidades_de_carreira": {
+            "type": "integer",
+            "nullable": true
+          },
+          "comentarios_clareza_sobre_possibilidades_de_carreira": {
+            "type": "string",
+            "nullable": true
+          },
+          "expectativa_de_permanencia": {
+            "type": "integer",
+            "nullable": true
+          },
+          "comentarios_expectativa_de_permanencia": {
+            "type": "string",
+            "nullable": true
+          },
+          "enps": {
+            "type": "integer",
+            "nullable": true
+          },
+          "aberta_enps": {
+            "type": "string",
+            "nullable": true
+          },
+          "data_da_resposta": {
+            "type": "string",
+            "format": "date"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date_time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date_time"
+          }
+        },
+        "required": [
+          "interesse_no_cargo",
+          "data_da_resposta"
+        ]
+      },
+      "employee": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "email_corporativo": {
+            "type": "string",
+            "nullable": true
+          },
+          "area": {
+            "type": "string",
+            "nullable": true
+          },
+          "cargo": {
+            "type": "string",
+            "nullable": true
+          },
+          "funcao": {
+            "type": "string",
+            "nullable": true
+          },
+          "localidade": {
+            "type": "string",
+            "nullable": true
+          },
+          "tempo_de_empresa": {
+            "type": "string",
+            "nullable": true
+          },
+          "genero": {
+            "type": "string",
+            "nullable": true
+          },
+          "geracao": {
+            "type": "string",
+            "nullable": true
+          },
+          "n0_empresa": {
+            "type": "string",
+            "nullable": true
+          },
+          "n1_diretoria": {
+            "type": "string",
+            "nullable": true
+          },
+          "n2_gerencia": {
+            "type": "string",
+            "nullable": true
+          },
+          "n3_coordenacao": {
+            "type": "string",
+            "nullable": true
+          },
+          "n4_area": {
+            "type": "string",
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date_time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date_time"
+          }
+        },
+        "required": [
+          "nome",
+          "email"
+        ]
+      }
+    }
+  }
 }

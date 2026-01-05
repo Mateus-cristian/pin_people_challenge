@@ -13,8 +13,7 @@ class DashboardService
     {
       all: build_metrics(Employee),
       filtered: build_metrics(filtered_scope),
-      filters: filters_payload,
-      eda: EmployeeEdaService.call
+      filters: filters_payload
     }
   end
 

@@ -8,20 +8,19 @@ class EmployeeEdaService
     new.call
   end
 
-  def call
+  def call(scope = Employee.joins(:survey_responses))
     {
-      tenure_distribution: tenure_distribution,
-      feedback_boxplot: feedback_boxplot,
-      summary_stats: summary_stats
+      tenure_distribution: tenure_distribution(scope),
+      feedback_boxplot: feedback_boxplot(scope),
+      summary_stats: summary_stats(scope)
     }
   end
 
   private
 
-  def tenure_distribution
-    raw = Employee.group(:tempo_de_empresa).count
+  def tenure_distribution(scope)
+    raw = scope.group(:tempo_de_empresa).count
     normalized = normalize_keys(raw)
-
     ordered_distribution(normalized)
   end
 
@@ -46,24 +45,28 @@ class EmployeeEdaService
     ordered
   end
 
-  def feedback_values
-    @feedback_values ||= Employee.where.not(feedback: nil).pluck(:feedback).sort
+  def feedback_values(scope = Employee.joins(:survey_responses))
+    EmployeeSurveyResponse
+      .where.not(feedback: nil)
+      .where(employee_id: scope.select(:id))
+      .order(:feedback)
+      .pluck(:feedback)
   end
 
-  def feedback_boxplot
-    return empty_boxplot if feedback_values.empty?
+  def feedback_boxplot(scope)
+    values = feedback_values(scope)
+    return empty_boxplot if values.empty?
 
     [
-      feedback_values.first,
-      percentile(0.25),
-      percentile(0.5),
-      percentile(0.75),
-      feedback_values.last
+      values.first,
+      percentile(0.25, values),
+      percentile(0.5, values),
+      percentile(0.75, values),
+      values.last
     ]
   end
 
-  def percentile(p)
-    values = feedback_values
+  def percentile(p, values)
     k = (values.size - 1) * p
     f = k.floor
     c = k.ceil
@@ -77,19 +80,15 @@ class EmployeeEdaService
     [ 0, 0, 0, 0, 0 ]
   end
 
-  def summary_stats
-    n = feedback_values.size
-
+  def summary_stats(scope)
+    values = feedback_values(scope)
+    n = values.size
     {
-      'Média Feedback' => n.positive? ? average.round(2) : 0,
-      'Mediana Feedback' => n.positive? ? percentile(0.5) : 0,
-      'Mínimo Feedback' => feedback_values.first || 0,
-      'Máximo Feedback' => feedback_values.last || 0,
+      'Média Feedback' => n.positive? ? (values.sum.to_f / n).round(2) : 0,
+      'Mediana Feedback' => n.positive? ? percentile(0.5, values) : 0,
+      'Mínimo Feedback' => values.first || 0,
+      'Máximo Feedback' => values.last || 0,
       'Total Funcionários' => Employee.count
     }
-  end
-
-  def average
-    feedback_values.sum.to_f / feedback_values.size
   end
 end

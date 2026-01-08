@@ -1,71 +1,47 @@
-<div
-  class="w-full mx-auto p-6 pb-0 bg-white rounded-2xl shadow-xl border border-gray-200"
->
-  <h1 class="text-4xl font-extrabold mb-6 text-center color-red tracking-tight">
-    Dashboard
-  </h1>
-  <p class="mb-10 text-lg text-gray-600 text-center">
-    Bem-vindo ao seu dashboard! Aqui você pode explorar e analisar em tempo real
-    os principais indicadores da empresa.
-  </p>
+<div class="w-full max-w-5xl mx-auto p-6 pb-0">
 
-  <div class="mb-8 flex flex-wrap justify-center gap-6">
-    <%= render 'filters', filters: @filters %>
+  <div class="mb-20">
+    <h1
+      class="text-4xl font-extrabold mb-2 text-center color-red tracking-tight"
+    >
+      Dashboard
+    </h1>
+    <p class="text-lg text-gray-600 text-center">
+      Bem-vindo ao seu dashboard! Aqui você pode explorar e analisar em tempo
+      real os principais indicadores da empresa.
+    </p>
   </div>
 
-  <div class="flex flex-col gap-10 mb-10">
-    <div
-      class="bg-gray-50 rounded-xl shadow p-6 border border-gray-100 flex flex-col items-center"
-    >
-      <h2 class="text-xl font-bold mb-4 color-green text-center">
-        Funcionários por Área
+  <div
+    class=" bg-white rounded-2xl shadow-xl border border-gray-200 mb-10"
+  >
+    <div class="p-6">
+      <h2 class="text-2xl font-bold color-red text-center tracking-tight mb-10">
+        Indicadores Segmentados
       </h2>
-      <% if @filtered[:employees_per_area].present? %> 
-      <%= column_chart @filtered[:employees_per_area], height: '320px', library: {title: {text:'', fontSize: 0}} %> 
-      <% else %>
-      <div class="text-gray-400 text-lg mt-16 mb-16">Sem dados disponíveis</div>
-      <% end %>
-      <p class="text-sm text-gray-500 mt-4 text-center">
-        Este gráfico mostra a quantidade de funcionários em cada área da
-        empresa, permitindo identificar áreas mais populosas e possíveis
-        gargalos.
-      </p>
+      <div class="flex flex-wrap justify-center gap-6 mb-6">
+        <%= render 'filters', filters: @filters %>
+      </div>
+      <%= render 'cards', filtered: @filtered %>
     </div>
-    <div
-      class="bg-gray-50 rounded-xl shadow p-6 border border-gray-100 flex flex-col items-center"
-    >
-      <h2 class="text-xl font-bold mb-4 color-green text-center">
-        Média de Feedback por Área
-      </h2>
-      <% if @filtered[:avg_feedback_per_area].present? %> 
-      <%= bar_chart @filtered[:avg_feedback_per_area], height: '320px', library: {title:{text: '', fontSize: 0}} %> 
-      <% else %>
-      <div class="text-gray-400 text-lg mt-16 mb-16">Sem dados disponíveis</div>
-      <% end %>
-      <p class="text-sm text-gray-500 mt-4 text-center">
-        Este gráfico apresenta a média dos feedbacks recebidos por área,
-        facilitando a comparação do engajamento e satisfação entre
-        departamentos.
-      </p>
-    </div>
-    <div
-      class="bg-gray-50 rounded-xl shadow p-6 border border-gray-100 flex flex-col items-center"
-    >
-      <h2 class="text-xl font-bold mb-4 color-green text-center">
-        Distribuição de eNPS
-      </h2>
-      <% if @filtered[:enps_distribution].present? %> 
-      <%= pie_chart @filtered[:enps_distribution], height: '320px', library: {title: {text: '', fontSize: 0}} %> 
-      <% else %>
-      <div class="text-gray-400 text-lg mt-16 mb-16">Sem dados disponíveis</div>
-      <% end %>
-      <p class="text-sm text-gray-500 mt-4 text-center">
-        Este gráfico mostra a proporção de promotores, neutros e detratores
-        (eNPS) entre os colaboradores, indicando o nível de satisfação e
-        lealdade à empresa.
-      </p>
-    </div>
+  </div>
 
-    <%= render 'eda', eda: @eda %>
+  <div
+    class=" bg-white rounded-2xl shadow-xl border border-gray-200 mb-10"
+  >
+    <div class="p-6">
+      <h2 class="text-2xl font-bold color-red mb-10 text-center tracking-tight">
+        Estatísticas Avançadas
+      </h2>
+      <div>
+        <%= render 'eda', eda: @eda %> 
+        <%= render 'executive_report' %>
+      </div>
+    </div>
+  </div>
+  <div class="flex justify-end mb-4">
+    <%= link_to 'Exportar PDF', dashboard_pdf_path(request.query_parameters),
+    class: 'bg-red text-white hover:bg-red-700 text-white font-bold py-2 px-4 rounded',
+    target: '_blank' %>
   </div>
 </div>

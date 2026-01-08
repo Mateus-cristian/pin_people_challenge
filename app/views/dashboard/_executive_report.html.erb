@@ -1,0 +1,58 @@
+<div
+  class="mt-10 bg-gray-50 rounded-xl shadow p-6 border border-gray-100 flex flex-col items-center mb-10"
+>
+  <h2 class="text-xl font-bold mb-4 color-green text-center">
+    Relatório Executivo
+  </h2>
+
+  <% report = @report || { headcount: 0, avg_feedback: 0, enps: 0, sentiment: {
+  positive: 0, negative: 0, neutral: 0 } } %>
+  <div class="flex flex-wrap gap-6 justify-center w-full">
+    <div
+      class="flex flex-col items-center justify-between bg-white border border-gray-200 rounded-xl shadow p-4 w-44 min-w-[140px]"
+    >
+      <div class="text-3xl mb-1 text-blue-600">👥</div>
+      <div class="flex flex-col items-center">
+        <div class="text-lg font-bold"><%= report[:headcount] %></div>
+        <div class="text-xs text-gray-500">Colaboradores</div>
+      </div>
+    </div>
+    <div
+      class="flex flex-col items-center justify-between bg-white border border-gray-200 rounded-xl shadow p-4 w-44 min-w-[140px]"
+    >
+      <div class="text-3xl mb-1 text-yellow-500">⭐</div>
+      <div class="flex flex-col items-center">
+        <div class="text-lg font-bold"><%= report[:avg_feedback] %></div>
+        <div class="text-xs text-gray-500">Feedback médio</div>
+      </div>
+    </div>
+    <div
+      class="flex flex-col items-center justify-between bg-white border border-gray-200 rounded-xl shadow p-4 w-44 min-w-[140px]"
+    >
+      <div class="text-3xl mb-1 text-green-600">📊</div>
+      <div class="flex flex-col items-center">
+        <div class="text-lg font-bold"><%= report[:enps] %></div>
+        <div class="text-xs text-gray-500">eNPS</div>
+      </div>
+    </div>
+    <div
+      class="flex flex-col items-center bg-white border border-gray-200 rounded-xl shadow p-4 w-44 min-w-[140px]"
+    >
+      <div class="text-3xl mb-1 text-purple-600">💬</div>
+      <div class="flex gap-1 flex-wrap justify-center">
+        <% report[:sentiment].each do |k, v| %>
+        <span
+          class="px-2 py-1 rounded text-xs font-semibold <%= k == :positive ? 'bg-green-100 text-green-700' : k == :negative ? 'bg-red-100 text-red-700' : 'bg-gray-100 text-gray-700' %>"
+        >
+          <%= k.to_s.capitalize %>: <%= v %>%
+        </span>
+        <% end %>
+      </div>
+      <div class="text-xs text-gray-500 mt-1">Sentimento</div>
+    </div>
+  </div>
+  <p class="text-sm text-gray-500 mt-4 text-center">
+    Visão geral dos principais indicadores da empresa: headcount, feedback
+    médio, eNPS e sentimento dos comentários.
+  </p>
+</div>

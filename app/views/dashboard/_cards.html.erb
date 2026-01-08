@@ -1,0 +1,54 @@
+<div class="flex flex-col gap-10 mb-10">
+  <div
+    class="bg-gray-50 rounded-xl shadow p-6 border border-gray-100 flex flex-col items-center"
+  >
+    <h2 class="text-xl font-bold mb-4 color-green text-center">
+      Funcionários por Área
+    </h2>
+    <% if filtered[:employees_per_area].present? %> 
+    <%= column_chart filtered[:employees_per_area], height: '320px', library: {title: {text:'',
+    fontSize: 0}} %> 
+    <% else %>
+    <div class="text-gray-400 text-lg mt-16 mb-16">Sem dados disponíveis</div>
+    <% end %>
+    <p class="text-sm text-gray-500 mt-4 text-center">
+      Este gráfico mostra a quantidade de funcionários em cada área da empresa,
+      permitindo identificar áreas mais populosas e possíveis gargalos.
+    </p>
+  </div>
+  <div
+    class="bg-gray-50 rounded-xl shadow p-6 border border-gray-100 flex flex-col items-center"
+  >
+    <h2 class="text-xl font-bold mb-4 color-green text-center">
+      Média de Feedback por Área
+    </h2>
+    <% if filtered[:avg_feedback_per_area].present? %> 
+    <%= bar_chart filtered[:avg_feedback_per_area], height: '320px', library: {title:{text:'',
+    fontSize: 0}} %> 
+    <% else %>
+    <div class="text-gray-400 text-lg mt-16 mb-16">Sem dados disponíveis</div>
+    <% end %>
+    <p class="text-sm text-gray-500 mt-4 text-center">
+      Este gráfico apresenta a média dos feedbacks recebidos por área,
+      facilitando a comparação do engajamento e satisfação entre departamentos.
+    </p>
+  </div>
+  <div
+    class="bg-gray-50 rounded-xl shadow p-6 border border-gray-100 flex flex-col items-center"
+  >
+    <h2 class="text-xl font-bold mb-4 color-green text-center">
+      Distribuição de eNPS
+    </h2>
+    <% if filtered[:enps_distribution].present? %> 
+    <%= pie_chart filtered[:enps_distribution], height: '320px', library: {title: {text:'',
+    fontSize: 0}} %> 
+    <% else %>
+    <div class="text-gray-400 text-lg mt-16 mb-16">Sem dados disponíveis</div>
+    <% end %>
+    <p class="text-sm text-gray-500 mt-4 text-center">
+      Este gráfico mostra a proporção de promotores, neutros e detratores (eNPS)
+      entre os colaboradores, indicando o nível de satisfação e lealdade à
+      empresa.
+    </p>
+  </div>
+</div>

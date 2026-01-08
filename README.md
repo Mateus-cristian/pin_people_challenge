@@ -31,7 +31,7 @@ app/
  │    ├── reports/        # Geração de relatórios executivos
  │    └── insights/       # Explorações criativas e EDA
  ├── views/               # Templates e componentes visuais
- └── jobs/                # (Reservado para background jobs)
+ └── jobs/                # (Reservado para background jobs futuros)
 spec/                     # Testes unitários, integração e sistema
 infra/                    # Dockerfile, compose, configs, RuboCop
 public/                   # Assets estáticos, data.csv
@@ -127,6 +127,7 @@ Makefile                  # Automação de tarefas
 - **Motivo:** Produtividade, design consistente, responsividade e acessibilidade.
 - **Componentes:** Cards, gráficos, tabelas, filtros, temas customizados.
 - **UX:** Foco em clareza visual, contraste, responsividade e navegação fluida.
+- **Mobile:** Todos os estilos e componentes foram pensados para garantir boa experiência também em dispositivos móveis (mobile-first), com navegação adaptada e responsiva.
 
 # 🧪 Testes e Qualidade de Código
 

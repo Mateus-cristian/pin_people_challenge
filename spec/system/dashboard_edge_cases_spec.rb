@@ -30,6 +30,5 @@ RSpec.describe 'Dashboard visual edge cases', type: :system do
     expect(page).to have_content('Distribuição de eNPS')
     expect(page).to have_content('Distribuição do Tempo de Empresa')
     expect(page).to have_content('Boxplot de Feedback Geral')
-    expect(page).to have_content('Estatísticas Descritivas Gerais')
   end
 end

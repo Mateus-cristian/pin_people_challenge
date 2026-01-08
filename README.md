@@ -188,7 +188,7 @@ bundle install
 
 ```sh
 rails db:migrate
-rails db:migrate RAILS_ENV=test
+rails db:migrate RAILS_ENV=test ou RAILS_ENV=test bundle exec rails db:create
 ```
 
 4. Execute a suíte de testes para garantir que o ambiente está funcionando:

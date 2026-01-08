@@ -2,8 +2,6 @@
 
 source "https://rubygems.org"
 
-gem "tailwindcss-rails", "~> 4.4"
-
 # Rails core
 gem "rails", "~> 8.1.1"
 

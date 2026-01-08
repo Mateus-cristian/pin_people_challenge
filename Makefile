@@ -28,7 +28,8 @@ db-reset:
 	docker compose -p pin -f infra/compose.yml run --rm web rails db:reset
 
 test:
-	docker compose -p pin -f infra/compose.yml run --rm web rails test
+	docker compose -p pin -f infra/compose.yml exec web bin/rails db:environment:set RAILS_ENV=test
+	docker compose -p pin -f infra/compose.yml exec web bash -c 'RAILS_ENV=test bundle exec rspec'
 
 db-migrate:
 	docker compose -p pin -f infra/compose.yml exec web bundle exec rails db:migrate
@@ -38,3 +39,6 @@ rubocop:
 
 rubocop-local:
 	bundle exec rubocop -c infra/.rubocop.yml $(ARGS)
+
+import-employees:
+	docker compose -p pin -f infra/compose.yml exec web bundle exec rails import:employees

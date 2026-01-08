@@ -129,6 +129,25 @@ Makefile                  # Automação de tarefas
 - **UX:** Foco em clareza visual, contraste, responsividade e navegação fluida.
 - **Mobile:** Todos os estilos e componentes foram pensados para garantir boa experiência também em dispositivos móveis (mobile-first), com navegação adaptada e responsiva.
 
+# 📚 Documentação da API (Swagger)
+
+Este projeto inclui documentação interativa da API utilizando Swagger (via rswag). A documentação permite explorar e testar os endpoints disponíveis de forma visual e prática.
+
+- **Como acessar:**
+
+  1. Certifique-se de que o servidor Rails está rodando (`rails s`).
+  2. Acesse [http://localhost:3000/api-docs](http://localhost:3000/api-docs) no seu navegador.
+  3. Explore os endpoints, parâmetros e exemplos de resposta diretamente pela interface.
+
+- **Localização dos arquivos Swagger:**
+
+  - Configuração: `config/initializers/rswag_api.rb`, `config/initializers/rswag_ui.rb`
+  - Especificações: `spec/swagger_helper.rb`, `swagger/v1/`
+
+- **Benefícios:**
+  - Facilita o entendimento e testes da API.
+  - Útil para integração com outros sistemas e validação de contratos.
+
 # 🧪 Testes e Qualidade de Código
 
 - **Estratégia:** RSpec para unitários, services, requests e integrações. FactoryBot para fixtures. Cobertura: controllers, services, EDA, sentimento, API.
@@ -153,7 +172,7 @@ Makefile                  # Automação de tarefas
 # 🛠️ Makefile
 
 - **Motivo:** Simplificar comandos e evitar erros manuais.
-  **Comandos disponíveis no Makefile:**
+- **Comandos disponíveis no Makefile:**
 - `db-setup`: Prepara o banco de dados (rails db:setup)
 - `db-reset`: Reseta o banco de dados (rails db:reset)
 - `db-migrate`: Executa as migrações

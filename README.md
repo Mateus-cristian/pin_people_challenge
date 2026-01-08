@@ -178,58 +178,60 @@ Makefile                  # Automação de tarefas
 ## Execução Local (Recomendado)
 
 1. Clone o repositório
+
 2. Instale as dependências Ruby:
 
 ```sh
 bundle install
 ```
 
-3. Prepare e migre o banco de dados (desenvolvimento e teste):
+3. Instale e configure o Tailwind CSS (apenas na primeira vez):
 
 ```sh
-rails db:migrate
-rails db:migrate RAILS_ENV=test ou RAILS_ENV=test bundle exec rails db:create
+bin/rails tailwindcss:install
 ```
 
-4. Execute a suíte de testes para garantir que o ambiente está funcionando:
-
-```sh
-bundle exec rspec
-```
-
-5. Importe os colaboradores do arquivo CSV:
-
-```sh
-rails import:employees
-```
-
-6. Inicie o servidor Rails:
-
-```sh
-rails s
-```
-
-7. Acesse o dashboard em [http://localhost:3000](http://localhost:3000)
-
-## Usando Docker (Apenas para o banco de dados)
-
-1. Suba o serviço do banco de dados:
+4. Garanta que o serviço do banco de dados (PostgreSQL) está rodando. Recomenda-se utilizar Docker para isolar dependências:
 
 ```sh
 make compose-up
 ```
 
-2. Execute as migrações e a importação de colaboradores dentro do container web:
+5. Crie e migre o banco de dados para os ambientes de desenvolvimento e teste:
 
 ```sh
-make db-migrate
-make import-employees
+rails db:create
+rails db:migrate
+rails db:create RAILS_ENV=test
+rails db:migrate RAILS_ENV=test
 ```
 
-3. O servidor Rails deve ser executado localmente, conforme instruções acima.
-4. Acesse o dashboard em [http://localhost:3000](http://localhost:3000)
+6. (Opcional) Importe os colaboradores do arquivo CSV:
 
-> **Nota profissional:** Todas as operações principais (migrate, importação, execução do servidor) podem ser feitas localmente. O Docker é utilizado apenas para o banco de dados, garantindo isolamento e facilidade de setup.
+```sh
+rails import:employees
+```
+
+7. Execute a suíte de testes para garantir que o ambiente está funcionando:
+
+```sh
+bundle exec rspec
+```
+
+8. Inicie o servidor Rails para acessar o dashboard:
+
+```sh
+rails s
+```
+
+9. Acesse o dashboard em [http://localhost:3000](http://localhost:3000)
+
+> **Nota profissional:**
+>
+> - O Docker é utilizado exclusivamente para o banco de dados, garantindo isolamento, reprodutibilidade e setup rápido.
+> - Não é necessário que o servidor Rails esteja rodando para executar migrações, importar dados ou rodar testes. Basta que o banco esteja disponível.
+> - Recomenda-se sempre rodar `make compose-up` antes de qualquer operação que dependa do banco.
+> - O fluxo sugerido acima garante onboarding rápido, seguro e alinhado com boas práticas de engenharia sênior.
 
 # 📦 Code and Files
 

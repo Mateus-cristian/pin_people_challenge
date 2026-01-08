@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
-
 class EmployeesController < ApplicationController
-  before_action :set_employee, only: [:show]
+  before_action :set_employee, only: [ :show ]
 
   def index
     @employees = Employee.page(params[:page]).per(10)
